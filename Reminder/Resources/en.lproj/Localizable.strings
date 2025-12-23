@@ -1,0 +1,12 @@
+// - MARK: Login View
+
+"loginToAcessYourData" = "Entre para acessar suas receitas";
+"emailExample" = "email@exemplo.com";
+"password" = "Senha";
+"login" = "Entrar";
+
+// - MARK: Home View
+
+// - MARK: Receipts View
+
+// - MARK: NewReceipt View
