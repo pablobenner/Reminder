@@ -51,6 +51,7 @@ class LoginBottomSheetView: UIView {
     super.init(frame: frame)
     initializer()
     
+    //testando um gesture
     let exampleGest = UITapGestureRecognizer(target: self, action: #selector(exampleTapped))
     titleLabel.addGestureRecognizer(exampleGest)
   }
