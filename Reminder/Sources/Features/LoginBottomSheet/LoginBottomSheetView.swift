@@ -6,10 +6,27 @@ class LoginBottomSheetView: UIView {
   private let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "loginToAcessYourData".localized
+    label.font = .systemFont(ofSize: 20, weight: .bold)
     // setando true pra usar gesture
     label.isUserInteractionEnabled = true
     label.translatesAutoresizingMaskIntoConstraints = false
     return label 
+  }()
+  
+  private let emailLabel: UILabel = {
+    let label = UILabel()
+    label.text = "email".localized
+    label.isUserInteractionEnabled = true
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  private let passwordLabel: UILabel = {
+    let label = UILabel()
+    label.text = "passwordLabel".localized
+    label.isUserInteractionEnabled = true
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
   }()
   
   private let handleArea: UIView = {
@@ -25,7 +42,7 @@ class LoginBottomSheetView: UIView {
     textField.placeholder = "emailExample".localized
     textField.borderStyle = .roundedRect
     textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.layer.borderWidth = 1.5
+    textField.layer.borderWidth = 3
     textField.layer.borderColor = UIColor.systemGray.cgColor
     textField.layer.cornerRadius = Metrics.tiny
     return textField
@@ -38,7 +55,7 @@ class LoginBottomSheetView: UIView {
     textField.isUserInteractionEnabled = true
     textField.isSecureTextEntry = true
     textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.layer.borderWidth = 1.5
+    textField.layer.borderWidth = 3
     textField.layer.borderColor = UIColor.systemGray.cgColor
     textField.layer.cornerRadius = Metrics.tiny
     return textField
@@ -49,9 +66,10 @@ class LoginBottomSheetView: UIView {
     button.setTitle("login".localized, for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = Colors.primaryRedBase
+    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     button.titleLabel?.textColor = .white
     button.setTitleColor(.white, for: UIControl.State.normal)
-    button.layer.cornerRadius = Metrics.tiny
+    button.layer.cornerRadius = 25
     return button
   }()
   
@@ -85,31 +103,36 @@ class LoginBottomSheetView: UIView {
     addSubview(emailTextField)
     addSubview(passwordTextField)
     addSubview(loginButton)
+    addSubview(emailLabel)
+    addSubview(passwordLabel)
     
     NSLayoutConstraint.activate([
       //self.top ancher é a top anchor da classe loginbottomsheetview que é uma uiview
-      handleArea.topAnchor.constraint(equalTo: self.topAnchor, constant: Metrics.small),
-      handleArea.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-      handleArea.widthAnchor.constraint(equalTo: self.widthAnchor, constant: 40),
-      handleArea.heightAnchor.constraint(equalToConstant: 6),
       
-      titleLabel.topAnchor.constraint(equalTo: handleArea.topAnchor, constant: Metrics.medium),
-      titleLabel.leadingAnchor.constraint(equalTo: handleArea.leadingAnchor, constant: Metrics.medium),
+      titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Metrics.medium),
+      titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.medium),
       
-      emailTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Metrics.medium),
+      emailLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Metrics.medium),
+      emailLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.medium),
+      
+      emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: Metrics.small),
       emailTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.medium),
       emailTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Metrics.medium),
       emailTextField.heightAnchor.constraint(equalToConstant: Metrics.huge),
+    
+      passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: Metrics.medium),
+      passwordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.medium),
       
-      passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: Metrics.medium),
+      passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: Metrics.small),
       passwordTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.medium),
       passwordTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Metrics.medium),
       passwordTextField.heightAnchor.constraint(equalToConstant: Metrics.huge),
       
-      loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: Metrics.medium),
+      loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: Metrics.huge),
       loginButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.medium),
       loginButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Metrics.medium),
-      loginButton.heightAnchor.constraint(equalToConstant: 50)
+      loginButton.heightAnchor.constraint(equalToConstant: 60),
+      
       
     ])
   }

@@ -4,6 +4,9 @@
 "emailExample" = "email@exemplo.com";
 "password" = "Senha";
 "login" = "Entrar";
+"email" = "E-mail:";
+"passwordLabel" = "Senha:";
+
 
 // - MARK: Home View
 
