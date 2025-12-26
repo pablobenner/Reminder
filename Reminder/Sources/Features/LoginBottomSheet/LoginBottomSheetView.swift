@@ -140,13 +140,11 @@ class LoginBottomSheetView: UIView {
   }
   
   @objc private func loginButtonDidTapped() {
+    // passando pro delegate o que foi passado nos campos de texto
     guard let user = emailTextField.text, let password = passwordTextField.text else {
       return
     }
-    delegate?.sendLoginData(user: user, Password: password)
-    
+    // se botar o breakpoint na objc, ele vai cair ali... dai posso dar um PO em user por exemplo pra ver o valor dele
+    delegate?.sendLoginData(user: user, password: password)
   }
 }
-
-
-//guard let user = emailTextField.text else { return }
