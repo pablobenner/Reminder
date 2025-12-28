@@ -1,14 +1,15 @@
+# CocoaPods
 Pods/
-*.xcuserdata
-*.xcuserstate
+Podfile.lock
 
-# Xcode user data
-xcuserdata/
-*.xcuserstate
+# Xcode workspace
+*.xcworkspace/
 
-# Derived data
-DerivedData/
+# Xcode user data (lixo local)
+**/xcuserdata/
+**/xcschememanagement.plist
 
 # macOS
 .DS_Store
+
 
