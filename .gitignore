@@ -1,3 +1,7 @@
+Pods/
+*.xcuserdata
+*.xcuserstate
+
 # Xcode user data
 xcuserdata/
 *.xcuserstate
