@@ -1,9 +1,5 @@
 # CocoaPods
 Pods/
-Podfile.lock
-
-# Xcode workspace
-*.xcworkspace/
 
 # Xcode user data (lixo local)
 **/xcuserdata/
