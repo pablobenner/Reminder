@@ -1,4 +1,5 @@
 import Foundation
+import Firebase
 
 class LoginBottomSheetViewModel {
   //auth vai fazer a autenticação / requisição
@@ -7,6 +8,6 @@ class LoginBottomSheetViewModel {
   }
   
   func showPrint() {
-    print(doAuth.emailLogin)
+  
   }
 }
