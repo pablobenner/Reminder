@@ -10,6 +10,7 @@ class LoginBottomSheetViewController: UIViewController {
     super.viewDidLoad()
     loginView.delegate = self // instanciado e inicializando nessa classe 
     initialize()
+    bindViewModel()
   }
   
   func initialize() {
@@ -37,6 +38,15 @@ class LoginBottomSheetViewController: UIViewController {
   private func handlePanGesture() {
     
   }
+  
+  private func bindViewModel() {
+    viewModel.successResult = { [weak self] in
+      print("chegou na vc")
+      
+    }
+  }
+  
+  
   // animar a BS,
   // quem chama o bottomSheetUp, pode passar um completion pra ele; pode ainda executar uma ação, ele pode fazer algo que vai completar uma ação
   //da classe
