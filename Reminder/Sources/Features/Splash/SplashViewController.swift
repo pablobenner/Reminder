@@ -38,6 +38,7 @@ class SplashViewController: UIViewController {
   
   @objc private func handleTouchBottomSheet() {
     let loginBottomSheet = LoginBottomSheetViewController()
+    loginBottomSheet.mainNavigationController = self.navigationController
     loginBottomSheet.modalPresentationStyle = .overCurrentContext
     loginBottomSheet.modalTransitionStyle = .crossDissolve
     self.present(loginBottomSheet, animated: true) {
