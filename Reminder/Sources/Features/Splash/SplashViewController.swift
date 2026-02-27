@@ -3,6 +3,17 @@ import UIKit
 
 class SplashViewController: UIViewController {
   let contentView = SplashView()
+  public weak var splashFlowDelegate: SplashFlowDelegate?
+  
+  init(splashFlowDelegate: SplashFlowDelegate) {
+    self.splashFlowDelegate = splashFlowDelegate
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,12 +48,6 @@ class SplashViewController: UIViewController {
   }
   
   @objc private func handleTouchBottomSheet() {
-    let loginBottomSheet = LoginBottomSheetViewController()
-    loginBottomSheet.mainNavigationController = self.navigationController
-    loginBottomSheet.modalPresentationStyle = .overCurrentContext
-    loginBottomSheet.modalTransitionStyle = .crossDissolve
-    self.present(loginBottomSheet, animated: true) {
-      loginBottomSheet.bottomSheetUp()
-    }
+    splashFlowDelegate?.openLoginBottomSheet()
   }
 }
