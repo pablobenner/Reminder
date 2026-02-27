@@ -4,10 +4,11 @@ class ReminderCoordinator {
   
   // MARK: - Properties
   private var navigationController: UINavigationController?
+  private var viewControllersFactory: ViewControllersFactoryProtocol
   // MARK: - Splash
   // MARK: - Init
   public init() {
-    
+    self.viewControllersFactory = ViewControllersFactory()
   }
   
   required init?(coder: NSCoder) {
@@ -16,7 +17,7 @@ class ReminderCoordinator {
   
   // MARK: - StartFlow
   func start() -> UINavigationController? {
-    let startViewController = SplashViewController(splashFlowDelegate: self)
+    let startViewController = viewControllersFactory.makeLoginBottomSheetViewController(flowDelegate: self)
     self.navigationController = UINavigationController(rootViewController: startViewController)
     return navigationController
   }
@@ -37,7 +38,7 @@ extension ReminderCoordinator: LoginBottomSheetFlowDelegate {
 
 extension ReminderCoordinator: SplashFlowDelegate {
   func openLoginBottomSheet() {
-    let loginBottomSheet = LoginBottomSheetViewController(flowDelegate: self)
+    let loginBottomSheet = viewControllersFactory.makeLoginBottomSheetViewController(flowDelegate: self)
     loginBottomSheet.modalPresentationStyle = .overCurrentContext
     loginBottomSheet.modalTransitionStyle = .crossDissolve
     navigationController?.present(loginBottomSheet, animated: true) {
