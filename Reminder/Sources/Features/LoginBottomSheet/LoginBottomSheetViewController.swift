@@ -18,7 +18,7 @@ class LoginBottomSheetViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    loginView.delegate = self // instanciado e inicializando nessa classe 
+    loginView.delegate = self // instanciado e inicializando nessa classe, agora essa classe é obrigada a chamar a função do delegate
     initialize()
     bindViewModel()
   }
