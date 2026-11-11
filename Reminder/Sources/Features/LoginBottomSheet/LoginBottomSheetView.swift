@@ -144,6 +144,7 @@ class LoginBottomSheetView: UIView {
     guard let user = emailTextField.text, let password = passwordTextField.text else {
       return
     }
+    // chamando o delegate e passando info pra ele, ele ja vai ter essa info e na VC ele tem extension com o protocolo ja com os results
     // se botar o breakpoint na objc, ele vai cair ali... dai posso dar um PO em user por exemplo pra ver o valor dele
     delegate?.sendLoginData(user: user, password: password)
   }
