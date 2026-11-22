@@ -50,9 +50,47 @@ class LoginBottomSheetViewController: UIViewController {
   }
   
   private func bindViewModel() {
-    viewModel.successResult = { [weak self] in
-      self?.flowDelegate?.navigateToHome()
+    
+    viewModel.successResult = { [weak self] emailDeLogin in
+      self?.presentSaveLoginAlert(email: emailDeLogin)
+      //      self?.flowDelegate?.navigateToHome()
     }
+    
+    viewModel.errorResult = { [weak self] errorMessage in
+      self?.presentErrorAlert(message: errorMessage)
+      
+    }
+  }
+  
+  private func presentErrorAlert(message: String) {
+    let alertController = UIAlertController(title: "Erro de login",
+                                            message: message,
+                                            preferredStyle: .alert)
+    let retryAction = UIAlertAction(title: "Tentar novamente",
+                                    style: .default)
+    alertController.addAction(retryAction)
+    self.present(alertController, animated: true)
+  }
+  
+  private func presentSaveLoginAlert(email: String) {
+    let alertController = UIAlertController(title: "Salvar acesso",
+                                            message: "Deseja salvar seu acesso?",
+                                            preferredStyle: .alert)
+    let saveAction = UIAlertAction(title: "Salvar",
+                                   style: .default) { _ in
+      let user = User(email: email, isUserSaved: true)
+      UserDefaultsManager.saveUser(user: user)
+      self.flowDelegate?.navigateToHome()
+    }
+    
+    let cancelAction = UIAlertAction(title: "Não",
+                                     style: .cancel) { _ in
+      self.flowDelegate?.navigateToHome()
+    }
+    
+    alertController.addAction(saveAction)
+    alertController.addAction(cancelAction)
+    self.present(alertController, animated: true)
   }
   
   
@@ -75,10 +113,10 @@ class LoginBottomSheetViewController: UIViewController {
   }
 }
 
-
+// cria a extensao aqui com a viewdelegate, pra passar os dados e ali em baixo validar com a viewmodel
 extension LoginBottomSheetViewController: LoginBottomSheetViewDelegate {
   func sendLoginData(user: String, password: String) {
-//    print(user, password)
+    //    print(user, password)
     viewModel.doAuth(emailLogin: user, passwordLogin: password)
     
   }

@@ -17,9 +17,20 @@ class SplashViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setup()
     setupGesture()
+    startTimeAnimation()
+//    decideDestiny()
+    setup()
     
+  }
+  
+  private func decideDestiny() {
+    // verif. se existe esse usuario, se existe, ele vai criar user //// só vai entrar aqui se issaved for true
+    if let user = UserDefaultsManager.loadUser(), user.isUserSaved {
+      splashFlowDelegate?.navigateToHome()
+    } else {
+      handleTouchBottomSheet()
+    }
   }
   
   private func setup() {
@@ -48,6 +59,30 @@ class SplashViewController: UIViewController {
   }
   
   @objc private func handleTouchBottomSheet() {
+    animateLogoUp()
     splashFlowDelegate?.openLoginBottomSheet()
+  }
+}
+
+// MARK: - Animations
+extension SplashViewController {
+  private func startTimeAnimation() {
+    UIView.animate(withDuration: 1.0,
+                   delay: 0.0,
+                   animations: {
+      self.contentView.logoImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+    }, completion:  {_ in
+      self.decideDestiny()
+    })
+  }
+  
+  private func animateLogoUp() {
+    UIView.animate(withDuration: 1.0,
+                   delay: 0.0,
+                   options: [.curveEaseInOut],
+                   animations: {
+      self.contentView.logoImageView.transform = self.contentView.logoImageView.transform.translatedBy(x: 0, y: -100)
+    }, completion: nil)
+
   }
 }

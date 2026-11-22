@@ -8,11 +8,11 @@
 
 
 import Foundation
-
+// classe para criar e gerenciar chaves de userdefault
 class UserDefaultsManager {
     //static let é pras func static conseguirem ler, sem ter que dar init.
     private static let userKey = "userKey"
-    
+    //passando User, pq é essa model (usuario) que a gente quer salvar
     static func saveUser(user: User) {
         let encoder = JSONEncoder() // 1. pega a máquina de empacotar
         // Serialização: Transforma a struct User no tipo 'Data'
